@@ -1,14 +1,12 @@
-import { Link, Stack } from 'expo-router'
+import { Stack } from 'expo-router'
 
 export default function RootLayout() {
-  const addItemButton = () => <Link href="/addItem">Add Item</Link>
-
   /* TODO support dark mode - try Tamagui */
   return (
     <Stack>
       <Stack.Screen
         name="index"
-        options={{ title: 'Todos', headerRight: addItemButton }}
+        options={{ title: 'Todos' }}
       />
       <Stack.Screen
         name="addItem"

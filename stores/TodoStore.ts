@@ -35,6 +35,10 @@ class TodoStore {
     },
   ]
 
+  get incompleteTodos() {
+    return this.todos.filter((t) => !t.complete)
+  }
+
   addTodo(name: string) {
     this.todos.push({
       id: uuid.v4() as string,
