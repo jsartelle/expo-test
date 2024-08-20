@@ -8,7 +8,7 @@ export default function AddItem() {
   const router = useRouter()
 
   const save = () => {
-    if (name.length >= 0) {
+    if (name.length > 0) {
       TodoStore.addTodo(name)
       router.dismiss()
     }
