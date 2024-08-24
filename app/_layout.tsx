@@ -10,8 +10,7 @@ import { TamaguiProvider } from 'tamagui'
 import { tamaguiConfig } from '../tamagui.config'
 
 if (Platform.OS === 'web') {
-  /* FIXME fix FOUC */
-  import('../tamagui-web.css')
+  require('../tamagui-web.css')
 }
 
 export default function RootLayout() {
