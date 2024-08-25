@@ -4,34 +4,58 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native'
-import { Link, Stack } from 'expo-router'
+import { CheckCheck, Plus } from '@tamagui/lucide-icons'
+import { Stack, useRouter } from 'expo-router'
 import { Observer } from 'mobx-react-lite'
+import type { ComponentProps } from 'react'
 import { Platform, useColorScheme } from 'react-native'
-import { TamaguiProvider, Text } from 'tamagui'
+import { Button, TamaguiProvider } from 'tamagui'
 import { tamaguiConfig } from '../tamagui.config'
 
 if (Platform.OS === 'web') {
   require('../tamagui-web.css')
 }
 
+export function ToolbarButton(props: ComponentProps<typeof Button>) {
+  return (
+    <Button
+      onPress={() => TodoStore.toggleHideComplete()}
+      icon={<CheckCheck size="$1" />}
+      backgroundColor="transparent"
+      hoverStyle={{
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+      }}
+      pressStyle={{
+        backgroundColor: 'transparent',
+        borderColor: 'transparent',
+        opacity: 0.5,
+      }}
+      {...props}
+    />
+  )
+}
+
 export default function RootLayout() {
   const colorScheme = useColorScheme()
+  const router = useRouter()
 
   const hideCompleteButton = () => (
     <Observer>
       {() => (
-        <Text onPress={() => TodoStore.toggleHideComplete()}>
-          {TodoStore.hideComplete ? 'Show Checked' : 'Hide Checked'}
-        </Text>
+        <ToolbarButton
+          onPress={() => TodoStore.toggleHideComplete()}
+          icon={<CheckCheck size="$1" />}
+        />
       )}
     </Observer>
   )
 
   const addItemButton = () => (
-    <Link href="/addItem">
-      {/* TODO use icon instead */}
-      <Text>Add Item</Text>
-    </Link>
+    <ToolbarButton
+      onPress={() => router.push('/addItem')}
+      icon={<Plus size="$1" />}
+    />
   )
 
   return (
