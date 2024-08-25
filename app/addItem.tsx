@@ -32,7 +32,7 @@ export default function AddItem() {
         enterKeyHint="done"
         onSubmitEditing={save}
       />
-      <Button disabled={disabled} onPress={save}>
+      <Button disabled={disabled} onPress={save} opacity={disabled ? 0.25 : 1}>
         Save
       </Button>
     </YStack>
