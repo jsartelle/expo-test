@@ -4,7 +4,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from '@react-navigation/native'
-import { CheckCheck, Plus } from '@tamagui/lucide-icons'
+import { CheckSquare2, Plus } from '@tamagui/lucide-icons'
 import { Stack, useRouter } from 'expo-router'
 import { Observer } from 'mobx-react-lite'
 import type { ComponentProps } from 'react'
@@ -19,8 +19,6 @@ if (Platform.OS === 'web') {
 export function ToolbarButton(props: ComponentProps<typeof Button>) {
   return (
     <Button
-      onPress={() => TodoStore.toggleHideComplete()}
-      icon={<CheckCheck size="$1" />}
       backgroundColor="transparent"
       hoverStyle={{
         backgroundColor: 'transparent',
@@ -45,7 +43,8 @@ export default function RootLayout() {
       {() => (
         <ToolbarButton
           onPress={() => TodoStore.toggleHideComplete()}
-          icon={<CheckCheck size="$1" />}
+          icon={<CheckSquare2 size="$1" />}
+          opacity={TodoStore.hideComplete ? 0.25 : 1}
         />
       )}
     </Observer>
