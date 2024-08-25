@@ -6,8 +6,8 @@ import {
 } from '@react-navigation/native'
 import { Link, Stack } from 'expo-router'
 import { Observer } from 'mobx-react-lite'
-import { Platform, Text, useColorScheme } from 'react-native'
-import { TamaguiProvider } from 'tamagui'
+import { Platform, useColorScheme } from 'react-native'
+import { TamaguiProvider, Text } from 'tamagui'
 import { tamaguiConfig } from '../tamagui.config'
 
 if (Platform.OS === 'web') {
@@ -27,7 +27,12 @@ export default function RootLayout() {
     </Observer>
   )
 
-  const addItemButton = () => <Link href="/addItem">Add Item</Link>
+  const addItemButton = () => (
+    <Link href="/addItem">
+      {/* TODO use icon instead */}
+      <Text>Add Item</Text>
+    </Link>
+  )
 
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>

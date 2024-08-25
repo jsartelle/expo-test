@@ -1,15 +1,11 @@
 import TodoItem from '@/components/TodoItem'
 import TodoStore from '@/stores/TodoStore'
 import { observer } from 'mobx-react-lite'
-import { View } from 'react-native'
+import { YStack } from 'tamagui'
 
 export default observer(function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <YStack flex={1}>
       {(TodoStore.hideComplete
         ? TodoStore.incompleteTodos
         : TodoStore.todos
@@ -20,6 +16,6 @@ export default observer(function Index() {
           toggle={() => TodoStore.toggle(item.id)}
         />
       ))}
-    </View>
+    </YStack>
   )
 })
