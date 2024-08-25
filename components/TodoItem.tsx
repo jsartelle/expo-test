@@ -20,7 +20,7 @@ export default function TodoItem({ name, complete, toggle }: TodoItemProps) {
   }
 
   return (
-    <ListItem gap={20} onPress={itemPressed}>
+    <ListItem onPress={itemPressed} gap={20} borderBottomWidth={1}>
       <Checkbox id={id} checked={complete} onPress={itemPressed}>
         <Checkbox.Indicator>
           <CheckIcon />
