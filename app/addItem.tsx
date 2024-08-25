@@ -10,7 +10,12 @@ export default function AddItem() {
   const save = () => {
     if (name.length > 0) {
       TodoStore.addTodo(name)
-      router.dismiss()
+      setName('')
+      if (router.canDismiss()) {
+        router.dismiss()
+      } else {
+        router.push('/')
+      }
     }
   }
 
