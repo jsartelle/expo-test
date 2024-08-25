@@ -57,6 +57,21 @@ export default function RootLayout() {
     />
   )
 
+  const cancelButton = () => (
+    <ToolbarButton
+      onPress={() => {
+        if (router.canDismiss()) {
+          router.dismiss()
+        } else {
+          router.push('/')
+        }
+      }}
+      color="$red10"
+    >
+      Cancel
+    </ToolbarButton>
+  )
+
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -71,7 +86,11 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="addItem"
-            options={{ presentation: 'modal', title: 'New Item' }}
+            options={{
+              presentation: 'modal',
+              title: 'New Item',
+              headerLeft: cancelButton,
+            }}
           />
         </Stack>
       </ThemeProvider>

@@ -21,7 +21,6 @@ export default function AddItem() {
 
   const disabled = name.length === 0
 
-  /* TODO add Cancel button */
   return (
     <YStack padding={20} gap={20}>
       <Input
