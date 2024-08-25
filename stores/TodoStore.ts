@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import uuid from 'react-native-uuid'
 
 export interface Todo {
@@ -10,11 +10,7 @@ export interface Todo {
 /* TODO get decorators working */
 class TodoStore {
   constructor() {
-    makeObservable(this, {
-      todos: observable,
-      addTodo: action,
-      toggle: action,
-    })
+    makeAutoObservable(this)
   }
 
   todos: Todo[] = [
@@ -35,6 +31,8 @@ class TodoStore {
     },
   ]
 
+  hideComplete = false
+
   get incompleteTodos() {
     return this.todos.filter((t) => !t.complete)
   }
@@ -51,6 +49,10 @@ class TodoStore {
     const todo = this.todos.find((t) => t.id === id)
     if (!todo) throw new Error(`Could not find todo with id ${id}`)
     todo.complete = !todo.complete
+  }
+
+  toggleHideComplete() {
+    this.hideComplete = !this.hideComplete
   }
 }
 
